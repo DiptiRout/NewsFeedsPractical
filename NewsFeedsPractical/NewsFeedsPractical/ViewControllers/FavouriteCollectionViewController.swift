@@ -21,8 +21,10 @@ class FavouriteCollectionViewController: UICollectionViewController {
         }
         collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+    }
+    override func viewWillAppear(_ animated: Bool) {
         articleData = dbManager.realm.objects(ArticleObject.self)
-        
+        collectionView.reloadData()
     }
 
 }

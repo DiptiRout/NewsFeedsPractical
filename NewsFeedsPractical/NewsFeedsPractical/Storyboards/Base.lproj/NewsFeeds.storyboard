@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--News Feeds-->
+        <!--Home ViewController-->
         <scene sceneID="urF-VO-uBo">
             <objects>
-                <collectionViewController id="b3q-RO-Vnk" customClass="HomePageViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Home ViewController" id="b3q-RO-Vnk" customClass="HomePageViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="V4f-eE-ZPv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
         <!--Delegate-->
         <scene sceneID="D7Y-Dv-otP">
             <objects>
-                <viewController storyboardIdentifier="FeedDetailsViewController" id="Zgw-mt-Fit" customClass="FeedDetailsViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedDetailsViewController" title="Details ViewController" id="Zgw-mt-Fit" customClass="FeedDetailsViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1P-FV-hbm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="2005.5999999999999" y="142.57871064467767"/>
         </scene>
-        <!--News Feeds-->
+        <!--Favourite ViewController-->
         <scene sceneID="QYc-5h-yuD">
             <objects>
-                <collectionViewController storyboardIdentifier="FavouriteCollectionViewController" id="6zY-BX-QcL" customClass="FavouriteCollectionViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="FavouriteCollectionViewController" title="Favourite ViewController" id="6zY-BX-QcL" customClass="FavouriteCollectionViewController" customModule="NewsFeedsPractical" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="5JG-tb-imV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
