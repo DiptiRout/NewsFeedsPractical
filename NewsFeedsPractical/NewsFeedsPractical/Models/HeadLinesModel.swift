@@ -27,4 +27,10 @@ struct ArticleModel: Codable {
     var urlToImage: URL?
     var description: String?
     var publishedAt: String?
+    
+    init(title: String, description: String, publishedAt: String) {
+        self.title = title
+        self.description = description
+        self.publishedAt = publishedAt
+    }
 }

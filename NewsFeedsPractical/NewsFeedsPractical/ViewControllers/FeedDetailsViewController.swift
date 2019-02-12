@@ -30,14 +30,17 @@ class FeedDetailsViewController: UIViewController {
         if let patternImage = UIImage(named: "Pattern") {
             view.backgroundColor = UIColor(patternImage: patternImage)
         }
+        
         if vcID == "FavouriteCollectionViewController" {
-            setUpDataFromFavPage()
+            bannerImageView.image = UIImage(data: articleObject.urlToImage)
         }
         else {
-            setUpDataFromHomePage()
+            bannerImageView.kf.setImage(with: article.urlToImage)
         }
+        setUpData()
+
     }
-    func setUpDataFromHomePage() {
+    func setUpData() {
         do {
             let object = try dbManager.findArticleByTitle(article.title ?? "")
             if object.isEmpty {
@@ -50,28 +53,9 @@ class FeedDetailsViewController: UIViewController {
         catch{
             
         }
-        bannerImageView.kf.setImage(with: article.urlToImage)
         nameLabel.text = article.title
         dateLabel.text = article.publishedAt
         descriptionLabel.text = article.description
-    }
-    func setUpDataFromFavPage() {
-        do {
-            let object = try dbManager.findArticleByTitle(articleObject.title)
-            if object.isEmpty {
-                favButton.setSelected(selected: false, animated: false)
-            }
-            else {
-                favButton.setSelected(selected: true, animated: false)
-            }
-        }
-        catch{
-            
-        }
-        bannerImageView.image = UIImage(data: articleObject.urlToImage)
-        nameLabel.text = articleObject.title
-        dateLabel.text = articleObject.publishedAt
-        descriptionLabel.text = articleObject.newsDescription
     }
 }
 
@@ -81,12 +65,7 @@ extension FeedDetailsViewController: FaveButtonDelegate {
             saveData()
         }
         else {
-            if vcID == "FavouriteCollectionViewController" {
-                deleteDataFav()
-            }
-            else {
-                deleteDataHome()
-            }
+            deleteData()
         }
     }
     
@@ -105,6 +84,7 @@ extension FeedDetailsViewController: FaveButtonDelegate {
             let object = try dbManager.findArticleByTitle(article.title ?? "")
             if object.isEmpty {
                 try dbManager.saveArticle(articleObject)
+
             }
             else {
             }
@@ -115,20 +95,7 @@ extension FeedDetailsViewController: FaveButtonDelegate {
         }
     }
     
-    func deleteDataFav() {
-        do {
-            let object = try dbManager.findArticleByTitle(articleObject.title)
-            if object.isEmpty {
-            }
-            else {
-                try dbManager.deleteArticle(articleObject)
-            }
-        }
-        catch {
-            
-        }
-    }
-    func deleteDataHome() {
+    func deleteData() {
         do {
             let object = try dbManager.findArticleByTitle(article.title ?? "")
             if object.isEmpty {

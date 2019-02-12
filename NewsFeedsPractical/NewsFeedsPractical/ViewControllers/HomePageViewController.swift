@@ -8,12 +8,15 @@
 
 import UIKit
 import RealmSwift
+import NVActivityIndicatorView
 
 class HomePageViewController: UICollectionViewController {
     
     let controller = APIController()
     var articleData = [ArticleModel]()
     let dbManager = DataBaseManager()
+    var activityIndicatorView: NVActivityIndicatorView!
+
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -27,6 +30,10 @@ class HomePageViewController: UICollectionViewController {
         collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         setRightNavBarItem()
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80), type: .ballClipRotate, color: #colorLiteral(red: 0.04787462205, green: 0.3609589934, blue: 0.1635327637, alpha: 1), padding: 5)
+        activityIndicatorView.center = view.center
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
         callNewsFeedsApi()
     }
     @objc func showFavItems(_ sender: Any) {
@@ -46,6 +53,7 @@ class HomePageViewController: UICollectionViewController {
                 if result {
                     self.articleData = newsData.articles ?? []
                     self.collectionView.reloadData()
+                    self.activityIndicatorView.stopAnimating()
                 }
                 else {
                     print(result)

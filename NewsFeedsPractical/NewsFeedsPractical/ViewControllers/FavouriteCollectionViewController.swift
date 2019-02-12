@@ -8,11 +8,14 @@
 
 import UIKit
 import RealmSwift
+import NVActivityIndicatorView
 
 class FavouriteCollectionViewController: UICollectionViewController {
 
     let dbManager = DataBaseManager()
+    var article: ArticleModel!
     var articleData: Results<ArticleObject>!
+    var activityIndicatorView: NVActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +23,19 @@ class FavouriteCollectionViewController: UICollectionViewController {
             view.backgroundColor = UIColor(patternImage: patternImage)
         }
         collectionView?.backgroundColor = .clear
-        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)        
     }
     override func viewWillAppear(_ animated: Bool) {
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80), type: .ballClipRotate, color: #colorLiteral(red: 0.04787462205, green: 0.3609589934, blue: 0.1635327637, alpha: 1), padding: 5)
+        activityIndicatorView.center = view.center
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
         articleData = dbManager.realm.objects(ArticleObject.self)
+    }
+    override func viewDidAppear(_ animated: Bool) {
         collectionView.reloadData()
+        activityIndicatorView.stopAnimating()
+
     }
 
 }
@@ -49,6 +60,10 @@ extension FavouriteCollectionViewController: UICollectionViewDelegateFlowLayout 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "NewsFeeds", bundle: nil)
         let detailsPageVC = storyboard.instantiateViewController(withIdentifier: "FeedDetailsViewController") as! FeedDetailsViewController
+        article = ArticleModel(title: articleData[indexPath.item].title,
+                               description: articleData[indexPath.item].newsDescription,
+                               publishedAt: articleData[indexPath.item].publishedAt)
+        detailsPageVC.article = article
         detailsPageVC.articleObject = articleData[indexPath.item]
         detailsPageVC.vcID = "FavouriteCollectionViewController"
         navigationController?.pushViewController(detailsPageVC, animated: false)

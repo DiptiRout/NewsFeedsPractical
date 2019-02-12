@@ -8,6 +8,7 @@ target 'NewsFeedsPractical' do
 pod "LBTAComponents"
 pod 'RealmSwift'
 pod 'Kingfisher', '~> 5.0'
+pod 'NVActivityIndicatorView'
 
   # Pods for NewsFeedsPractical
 
