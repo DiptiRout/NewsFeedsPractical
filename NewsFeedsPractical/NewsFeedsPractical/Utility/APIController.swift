@@ -15,10 +15,10 @@ class APIController: NSObject {
     let baseUrl = "https://newsapi.org"
     let endPoint = "/v2/top-headlines"
 // https://newsapi.org/v2/top-headlines?country=us&apiKey=5c6ee09a978942e4b2e37f78c90780c3
+// https://newsapi.org/v2/everything?q=bitcoin&apiKey=5c6ee09a978942e4b2e37f78c90780c3
     
     func getTopHeadLines(countryCode: String, completion: @escaping (_ result: Bool, _ newsData: HeadLinesModel)->()) {
-        let url = URL(string: "https://newsapi.org/v2/everything?q=bitcoin&apiKey=5c6ee09a978942e4b2e37f78c90780c3")
-        //URL(string: "\(baseUrl)\(endPoint)?country=\(countryCode)&apiKey=\(apiKey)")
+        let url = URL(string: "\(baseUrl)\(endPoint)?country=\(countryCode)&apiKey=\(apiKey)")
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         

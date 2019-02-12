@@ -26,7 +26,19 @@ class HomePageViewController: UICollectionViewController {
         }
         collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+        setRightNavBarItem()
         callNewsFeedsApi()
+    }
+    @objc func showFavItems(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "NewsFeeds", bundle: nil)
+        let detailsPageVC = storyboard.instantiateViewController(withIdentifier: "FavouriteCollectionViewController") as! FavouriteCollectionViewController
+        navigationController?.pushViewController(detailsPageVC, animated: false)
+    }
+    func setRightNavBarItem() {
+        
+        let rightNavBarItem = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(showFavItems(_:)))
+        self.navigationItem.rightBarButtonItem = rightNavBarItem
     }
     func callNewsFeedsApi() {
         controller.getTopHeadLines(countryCode: "us", completion: { (result, newsData) -> () in

@@ -36,12 +36,6 @@ class FeedDetailsViewController: UIViewController {
         else {
             setUpDataFromHomePage()
         }
-        
-        
-        
-        let rightNavBarItem = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(showFavItems(_:)))
-        self.navigationItem.rightBarButtonItem = rightNavBarItem
-        
     }
     func setUpDataFromHomePage() {
         do {
@@ -79,14 +73,6 @@ class FeedDetailsViewController: UIViewController {
         dateLabel.text = articleObject.publishedAt
         descriptionLabel.text = articleObject.newsDescription
     }
-    
-    @objc func showFavItems(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: "NewsFeeds", bundle: nil)
-        let detailsPageVC = storyboard.instantiateViewController(withIdentifier: "FavouriteCollectionViewController") as! FavouriteCollectionViewController
-        navigationController?.pushViewController(detailsPageVC, animated: false)
-    }
-    
 }
 
 extension FeedDetailsViewController: FaveButtonDelegate {
@@ -95,7 +81,12 @@ extension FeedDetailsViewController: FaveButtonDelegate {
             saveData()
         }
         else {
-            deleteData()
+            if vcID == "FavouriteCollectionViewController" {
+                deleteDataFav()
+            }
+            else {
+                deleteDataHome()
+            }
         }
     }
     
@@ -124,7 +115,20 @@ extension FeedDetailsViewController: FaveButtonDelegate {
         }
     }
     
-    func deleteData() {
+    func deleteDataFav() {
+        do {
+            let object = try dbManager.findArticleByTitle(articleObject.title)
+            if object.isEmpty {
+            }
+            else {
+                try dbManager.deleteArticle(articleObject)
+            }
+        }
+        catch {
+            
+        }
+    }
+    func deleteDataHome() {
         do {
             let object = try dbManager.findArticleByTitle(article.title ?? "")
             if object.isEmpty {

@@ -22,7 +22,6 @@ class FavouriteCollectionViewController: UICollectionViewController {
         collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         articleData = dbManager.realm.objects(ArticleObject.self)
-        print(articleData)
         
     }
 
