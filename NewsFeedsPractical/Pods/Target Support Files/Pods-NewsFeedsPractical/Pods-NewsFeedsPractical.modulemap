@@ -1,0 +1,6 @@
+framework module Pods_NewsFeedsPractical {
+  umbrella header "Pods-NewsFeedsPractical-umbrella.h"
+
+  export *
+  module * { export * }
+}

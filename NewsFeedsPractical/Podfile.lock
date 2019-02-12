@@ -1,0 +1,30 @@
+PODS:
+  - Kingfisher (5.1.0)
+  - LBTAComponents (1.0.2)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+
+DEPENDENCIES:
+  - Kingfisher (~> 5.0)
+  - LBTAComponents
+  - RealmSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - LBTAComponents
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+
+PODFILE CHECKSUM: f3fc9f4c26ba4bf9c3f796d967313a73725331cd
+
+COCOAPODS: 1.5.3
